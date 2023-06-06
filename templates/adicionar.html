@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block main %}
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+<form class="flex flex-col">
+    <label for="to-do" class="mb-4 font-bold text-zinc-800">Insira aqui a tarefa</label>
+    <input type="text" name="to-do" id="to-do" placeholder="Ex.: Lavar roupas, comprar a comida do gato, etc..." class="p-3 w-max shadow-md">
+    <button class="bg-purple-500 p-2 rounded font-bold text-white mt-4 ease-in hover:bg-purple-600">Enviar</button>
+</form>
+</div>
+{% endblock %}
