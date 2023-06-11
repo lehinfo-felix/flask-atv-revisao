@@ -1,6 +1,22 @@
-
 {% extends "base.html" %} {% block main %}
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    {{todos}}
+    <ul>
+        {% if todos|length == 0 %}
+            <li>
+                <p>Não há tarefas cadastradas</p>
+            </li>
+        {% endif %}
+        {% for todo in todos %}
+            {%  if todo.completed == True %}
+                <li class="p-2 rounded-md mb-2 bg-zinc-300">
+                    <del><span><b>{{todo.id}}- </b></span>{{ todo.name }}</del>
+                </li>
+            {% else %}
+                <li class="p-2 rounded-md mb-2 bg-zinc-200">
+                    <p><span><b>{{todo.id}}- </b></span>{{ todo.name }}</p>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

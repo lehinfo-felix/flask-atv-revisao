@@ -1,5 +1,30 @@
 {% extends "base.html" %} {% block main %}
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
-  
+    <ul>
+        {% if todos|length == 0 %}
+            <li>
+                <p>Não há tarefas para serem concluídas</p>
+            </li>
+        {% endif %}
+        {% for todo in todos %}
+            {%  if todo.completed == True %}
+                <li class="p-2 rounded-md mb-2 bg-zinc-300">
+                  <del>
+                    <span><b>{{todo.id}}- </b></span>{{ todo.name }}
+                  </del>
+                  <form method="POST" action="/concluir-tarefa/{{todo.id}}">
+                    <button type="submit" class="bg-red-400 text-white px-2 rounded p-2">Desconcluir</button>
+                  </form>
+                </li>
+            {% else %}
+                <li class="p-2 rounded-md mb-2 bg-zinc-200">
+                    <span><b>{{todo.id}}- </b></span>{{ todo.name }}
+                    <form method="POST" action="/concluir-tarefa/{{todo.id}}">
+                      <button type="submit" class="bg-green-400 text-white px-2 rounded p-2">Concluir</button>
+                    </form>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
